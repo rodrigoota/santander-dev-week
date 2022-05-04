@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class CorrentistaService {
 
     @Autowired
-    CorrentistaRepository repository;
+    private CorrentistaRepository repository;
 
     public void save(NovoCorrentista novoCorrentista) {
         Correntista correntista = new Correntista();
