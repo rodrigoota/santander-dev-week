@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres-bankline:
+    image: postgres
+    restart: always
+    tty: true
+    environment:
+      POSTGRES_PASSWORD: "x"
+    ports:
+      - "15432:5432"
+    volumes:
+      - /Users/rodrigoota/Projects/dio/SantanderDevWeek/db/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    tty: true
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "rodrigotety@hotmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "x"
+    ports:
+      - "16432:80"
+    depends_on:
+      - postgres-bankline
+    networks:
+      - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge
